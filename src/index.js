@@ -79,14 +79,28 @@ function switchTempSelected() {
 
 function changeToF() {
   let currentTempC = document.querySelector("#current-temp");
-  let fahrenheit = convertToF(currentTempC.innerText);
-  currentTempC.innerHTML = Math.round(fahrenheit);
+  let currentHighC = document.querySelector("#current-high");
+  let currentLoC = document.querySelector("#current-lo");
+  let currentTempFahrenheit = convertToF(currentTempC.innerText);
+  let currentHighFahrenheit = convertToF(currentHighC.innerText);
+  let currentLoFahrenheit = convertToF(currentLoC.innerText);
+  currentTempC.innerHTML = Math.round(currentTempFahrenheit);
+  currentHighC.innerHTML = Math.round(currentHighFahrenheit);
+  currentLoC.innerHTML = Math.round(currentLoFahrenheit);
+
   switchTempSelected();
 }
 function changeToC() {
   let currentTempF = document.querySelector("#current-temp");
-  let celcius = convertToC(currentTempF.innerText);
-  currentTempF.innerHTML = Math.round(celcius);
+  let currentHighF = document.querySelector("#current-high");
+  let currentLoF = document.querySelector("#current-lo");
+  let currentTempCelcius = convertToC(currentTempF.innerText);
+  let currentHighCelcius = convertToC(currentHighF.innerText);
+  let currentLoCelcius = convertToC(currentLoF.innerText);
+  currentTempF.innerHTML = Math.round(currentTempCelcius);
+  currentHighF.innerHTML = Math.round(currentHighCelcius);
+  currentLoF.innerHTML = Math.round(currentLoCelcius);
+
   switchTempSelected();
 }
 
@@ -107,8 +121,8 @@ function updateWeather(response) {
   let currentLo = document.querySelector("#current-lo");
 
   currentTemp.innerText = temperature;
-  currentHigh.innerHTML = high + "˚";
-  currentLo.innerHTML = lo + "˚";
+  currentHigh.innerHTML = high;
+  currentLo.innerHTML = lo;
 
   updateCity(response);
 }
