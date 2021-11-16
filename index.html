@@ -33,21 +33,26 @@
               <div class="col-5 p-1">
                 <form id="search-form">
                   <input
-                  class="form-control"
-                  type="search"
-                  placeholder="Enter city"
-                  id="city-search-text">
-                <button type="submit" class="btn btn-outline-secondary mx-2">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button type="button" class="btn btn-outline-secondary" id="use-current-location">
-                  <i class="fas fa-map-marker-alt"></i>
-                </button>
+                    class="form-control"
+                    type="search"
+                    placeholder="Enter city"
+                    id="city-search-text"
+                  />
+                  <button type="submit" class="btn btn-outline-secondary mx-2">
+                    <i class="fas fa-search"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    id="use-current-location"
+                  >
+                    <i class="fas fa-map-marker-alt"></i>
+                  </button>
                 </form>
               </div>
               <div class="px-4 py-2">
                 <h4>
-                  <a href="#"  class="tempSelected p-1" id="change-c">˚C </a>
+                  <a href="#" class="tempSelected p-1" id="change-c">˚C </a>
                   <span class="vr"> </span>
                   <a href="#" class="tempUnselected p-1" id="change-f">˚F</a>
                 </h4>
@@ -59,7 +64,9 @@
               <span class="cityName" id="current-city">Copenhagen</span>
               <span class="countryName" id="current-country">Denmark</span>
             </h2>
-            <p class="currentDate p-2" id="current-date">Monday 11 October 15:42</p>
+            <p class="currentDate p-2" id="current-date">
+              Monday 11 October 15:42
+            </p>
           </div>
           <div class="row">
             <div class="col-3 pl-2">
@@ -131,8 +138,18 @@
                 <span class="vr"></span>
                 <span class="forecastLo p-1">4˚</span>
               </p>
+            </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>
+        <a href="https://github.com/krazeecat/shecodes-project.git">
+          Open source project
+        </a>
+        by Anna MacMurdo
+      </p>
     </div>
     <script src="src/index.js"></script>
   </body>

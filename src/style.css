@@ -12,11 +12,20 @@ h2 {
 p {
   font-size: 18px;
   text-align: center;
+  color: #7b7b7b;
 }
-
 form {
   display: flex;
 }
+a {
+  color: #53bbf3;
+  text-decoration: none;
+}
+a:hover {
+  color: #53bbf3;
+  text-decoration: underline;
+}
+
 .weatherApp {
   max-width: 1000px;
 }
@@ -91,4 +100,7 @@ form {
 }
 .vert {
   max-width: 1px;
+}
+.footer {
+  margin: 32px;
 }
