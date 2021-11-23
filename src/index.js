@@ -110,19 +110,22 @@ changeF.addEventListener("click", changeToF);
 let changeC = document.querySelector("#change-c");
 changeC.addEventListener("click", changeToC);
 
-//Update weather from location button
+//Update weather 
 function updateWeather(response) {
   let temperature = Math.round(response.data.main.temp);
   let high = Math.round(response.data.main.temp_max);
   let lo = Math.round(response.data.main.temp_min);
+  let icon = response.data.weather[0].icon;
 
   let currentTemp = document.querySelector("#current-temp");
   let currentHigh = document.querySelector("#current-high");
   let currentLo = document.querySelector("#current-lo");
+  let currentIcon = document.querySelector("#currentIcon");
 
   currentTemp.innerText = temperature;
   currentHigh.innerHTML = high;
   currentLo.innerHTML = lo;
+  currentIcon.setAttribute("src", `images/${icon}.png`);
 
   updateCity(response);
 }
