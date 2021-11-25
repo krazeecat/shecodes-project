@@ -80,26 +80,26 @@ function switchTempSelected() {
 function changeToF() {
   let currentTempC = document.querySelector("#current-temp");
   let currentHighC = document.querySelector("#current-high");
-  let currentLoC = document.querySelector("#current-lo");
+  let currentLowC = document.querySelector("#current-low");
   let currentTempFahrenheit = convertToF(currentTempC.innerText);
   let currentHighFahrenheit = convertToF(currentHighC.innerText);
-  let currentLoFahrenheit = convertToF(currentLoC.innerText);
+  let currentLowFahrenheit = convertToF(currentLowC.innerText);
   currentTempC.innerHTML = Math.round(currentTempFahrenheit);
   currentHighC.innerHTML = Math.round(currentHighFahrenheit);
-  currentLoC.innerHTML = Math.round(currentLoFahrenheit);
+  currentLowC.innerHTML = Math.round(currentLowFahrenheit);
 
   switchTempSelected();
 }
 function changeToC() {
   let currentTempF = document.querySelector("#current-temp");
   let currentHighF = document.querySelector("#current-high");
-  let currentLoF = document.querySelector("#current-lo");
+  let currentLowF = document.querySelector("#current-low");
   let currentTempCelcius = convertToC(currentTempF.innerText);
   let currentHighCelcius = convertToC(currentHighF.innerText);
-  let currentLoCelcius = convertToC(currentLoF.innerText);
+  let currentLowCelcius = convertToC(currentLowF.innerText);
   currentTempF.innerHTML = Math.round(currentTempCelcius);
   currentHighF.innerHTML = Math.round(currentHighCelcius);
-  currentLoF.innerHTML = Math.round(currentLoCelcius);
+  currentLowF.innerHTML = Math.round(currentLowCelcius);
 
   switchTempSelected();
 }
@@ -110,21 +110,21 @@ changeF.addEventListener("click", changeToF);
 let changeC = document.querySelector("#change-c");
 changeC.addEventListener("click", changeToC);
 
-//Update weather 
+//Update weather
 function updateWeather(response) {
   let temperature = Math.round(response.data.main.temp);
   let high = Math.round(response.data.main.temp_max);
-  let lo = Math.round(response.data.main.temp_min);
+  let low = Math.round(response.data.main.temp_min);
   let icon = response.data.weather[0].icon;
 
   let currentTemp = document.querySelector("#current-temp");
   let currentHigh = document.querySelector("#current-high");
-  let currentLo = document.querySelector("#current-lo");
+  let currentLow = document.querySelector("#current-low");
   let currentIcon = document.querySelector("#currentIcon");
 
   currentTemp.innerText = temperature;
   currentHigh.innerHTML = high;
-  currentLo.innerHTML = lo;
+  currentLow.innerHTML = low;
   currentIcon.setAttribute("src", `images/${icon}.png`);
 
   updateCity(response);
