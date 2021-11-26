@@ -1,41 +1,38 @@
-//Current date and time
-let current = new Date();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Satday",
-];
-let months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
-function giveDate(date) {
+//update time and date on page
+function updateDate() {
+  let date = new Date();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Satday",
+  ];
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   let dateNow = date.getDate();
   let dayNow = days[date.getDay()];
   let monthNow = months[date.getMonth()];
   let hourNow = (date.getHours() < 10 ? "0" : "") + date.getHours();
   let minuteNow = (date.getMinutes() < 10 ? "0" : "") + date.getMinutes();
+  let displayDate = document.querySelector("#current-date");
 
-  return `${dayNow} ${dateNow} ${monthNow} ${hourNow}:${minuteNow}`;
+  displayDate.innerHTML = `${dayNow} ${dateNow} ${monthNow} ${hourNow}:${minuteNow}`;
 }
-
-let displayDate = document.querySelector("#current-date");
-displayDate.innerHTML = giveDate(current);
 
 //Change city name
 function updateCity(response) {
@@ -65,6 +62,8 @@ function checkTempUnit() {
     return false;
   }
 }
+
+//Swap celcius and farhenheit active links and styling
 function switchTempSelected() {
   let unitC = document.querySelector("#change-c");
   let unitF = document.querySelector("#change-f");
@@ -77,6 +76,7 @@ function switchTempSelected() {
   }
 }
 
+//change display temperatures from celcius to farhenheit
 function changeToF() {
   let currentTempC = document.querySelector("#current-temp");
   let currentHighC = document.querySelector("#current-high");
@@ -90,6 +90,8 @@ function changeToF() {
 
   switchTempSelected();
 }
+
+//change display temperatures from farhenheit to celcius
 function changeToC() {
   let currentTempF = document.querySelector("#current-temp");
   let currentHighF = document.querySelector("#current-high");
@@ -110,26 +112,36 @@ changeF.addEventListener("click", changeToF);
 let changeC = document.querySelector("#change-c");
 changeC.addEventListener("click", changeToC);
 
-//Update weather
+//Update weather info
 function updateWeather(response) {
+  console.log(response);
   let temperature = Math.round(response.data.main.temp);
   let high = Math.round(response.data.main.temp_max);
   let low = Math.round(response.data.main.temp_min);
   let icon = response.data.weather[0].icon;
+  let description = response.data.weather[0].description;
+  let wind = Math.round(response.data.wind.speed);
 
   let currentTemp = document.querySelector("#current-temp");
   let currentHigh = document.querySelector("#current-high");
   let currentLow = document.querySelector("#current-low");
   let currentIcon = document.querySelector("#currentIcon");
+  let currentDescription = document.querySelector("#current-description");
+  let currentWind = document.querySelector("#current-wind");
 
   currentTemp.innerText = temperature;
   currentHigh.innerHTML = high;
   currentLow.innerHTML = low;
   currentIcon.setAttribute("src", `images/${icon}.png`);
+  currentDescription.innerText = description;
+  currentWind.innerText = wind;
+
+  updateDate();
 
   updateCity(response);
 }
 
+//search for weather from search box text
 function findCityWeather(event) {
   event.preventDefault();
   let newCity = document.querySelector("#city-search-text").value;
@@ -145,6 +157,7 @@ function findCityWeather(event) {
   axios.get(weatherURL).then(updateWeather);
 }
 
+//search for weather from the location button
 function findLocationWeather(position) {
   let lat = position.coords.latitude;
   let long = position.coords.longitude;
