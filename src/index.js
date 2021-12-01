@@ -56,7 +56,7 @@ function convertToC(fahrenheit) {
 }
 function checkTempUnit() {
   let checkC = document.querySelector("#change-c");
-  if (checkC.classList.contains("tempSelected")) {
+  if (checkC.classList.contains("temp-selected")) {
     return true;
   } else {
     return false;
@@ -68,11 +68,11 @@ function switchTempSelected() {
   let unitC = document.querySelector("#change-c");
   let unitF = document.querySelector("#change-f");
   if (checkTempUnit()) {
-    unitC.classList.replace("tempSelected", "tempUnselected");
-    unitF.classList.replace("tempUnselected", "tempSelected");
+    unitC.classList.replace("temp-selected", "temp-unselected");
+    unitF.classList.replace("temp-unselected", "temp-selected");
   } else {
-    unitC.classList.replace("tempUnselected", "tempSelected");
-    unitF.classList.replace("tempSelected", "tempUnselected");
+    unitC.classList.replace("temp-unselected", "temp-selected");
+    unitF.classList.replace("temp-selected", "temp-unselected");
   }
 }
 

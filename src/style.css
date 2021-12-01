@@ -28,86 +28,86 @@ a:hover {
   text-decoration: underline;
 }
 
-.weatherApp {
+.weather-app {
   max-width: 1000px;
 }
-.tempSelected {
+.temp-selected {
   font-weight: 600;
   color: #53bbf3;
   text-decoration: none;
   pointer-events: none;
 }
-.tempSelected:hover {
+.temp-selected:hover {
   font-weight: 600;
   color: #53bbf3;
   text-decoration: none;
 }
-.tempUnselected {
+.temp-unselected {
   font-weight: 300;
   color: #7b7b7b;
   text-decoration: none;
 }
-.tempUnselected:hover {
+.temp-unselected:hover {
   color: #53bbf3;
   text-decoration: none;
 }
-.cityName {
+.city-name {
   font-weight: 600;
   color: #53bbf3;
 }
-.countryName {
+.country-name {
   font-weight: 300;
   color: #7b7b7b;
 }
-.currentDate {
+.current-date {
   color: #4a4a4a;
   text-align: left;
-  padding: 0px;
+  padding: 0;
 }
-.currentDescription::first-letter {
+.current-description::first-letter {
   text-transform: capitalize;
 }
-.currentTemp {
+.current-temp {
   color: #53bbf3;
   font-size: 132px;
   text-align: right;
   padding-top: 0;
 }
-.currentHigh {
+.current-high {
   color: #4a4a4a;
   text-align: center;
 }
-.currentLow {
+.current-low {
   color: #7b7b7b;
   text-align: center;
 }
-.forecast {
+.forecast-header {
   color: #7b7b7b;
   font-size: 32px;
   font-weight: 300;
 }
-.forecastDate {
-  color: #7b7b7b;
+.forecast {
   text-align: center;
 }
-.forecastGraphic {
+.forecast-date {
+  color: #7b7b7b;
+}
+.forecast-graphic {
   display: block;
   margin: 0 auto;
   width: 72px;
 }
-.forecastHigh {
+.forecast-high {
   font-weight: 400;
   color: #4a4a4a;
-  text-align: center;
 }
-.forecastLow {
+.forecast-low {
   font-weight: 400;
   color: #7b7b7b;
-  text-align: center;
 }
 .vert {
   max-width: 1px;
 }
 .footer {
-  margin: 32px;
+  margin: 16px 0;
 }

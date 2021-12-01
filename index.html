@@ -25,7 +25,7 @@
     ></script>
   </head>
   <body>
-    <div class="container weatherApp">
+    <div class="container weather-app">
       <div class="card my-4 pb-4">
         <div class="card-body">
           <div class="row p-2">
@@ -52,28 +52,28 @@
               </div>
               <div class="px-4 py-2">
                 <h4>
-                  <a href="#" class="tempSelected p-1" id="change-c">˚C </a>
+                  <a href="#" class="temp-selected p-1" id="change-c">˚C </a>
                   <span class="vr"> </span>
-                  <a href="#" class="tempUnselected p-1" id="change-f">˚F</a>
+                  <a href="#" class="temp-unselected p-1" id="change-f">˚F</a>
                 </h4>
               </div>
             </div>
           </div>
           <div class="row p-4">
             <h2 class="card-title">
-              <span class="cityName" id="current-city">Copenhagen</span>
-              <span class="countryName" id="current-country">Denmark</span>
+              <span class="city-name" id="current-city">Copenhagen</span>
+              <span class="country-name" id="current-country">Denmark</span>
             </h2>
-            <p class="currentDate p-2" id="current-date"></p>
-            <p class="currentDescription" id="current-description"></p>
+            <p class="current-date p-2" id="current-date"></p>
+            <p class="current-description" id="current-description"></p>
             <p>
               <span>Wind: </span><span id="current-wind"> </span>
               <span> m/s</span>
             </p>
           </div>
-          <div class="row">
+          <div class="row d-flex justify-content-between">
             <div class="col-3 pl-2">
-              <h1 class="currentTemp">
+              <h1 class="current-temp">
                 <span id="current-temp">13</span><span>˚</span>
               </h1>
             </div>
@@ -85,14 +85,14 @@
               />
             </div>
             <div class="col-3 pt-2">
-              <h2 class="currentHigh">high</h2>
-              <h2 class="currentHigh">
+              <h2 class="current-high">high</h2>
+              <h2 class="current-high">
                 <span id="current-high">16</span><span>˚</span>
               </h2>
             </div>
             <div class="col-3 pt-2">
-              <h2 class="currentLow">low</h2>
-              <h2 class="currentLow">
+              <h2 class="current-low">low</h2>
+              <h2 class="current-low">
                 <span id="current-low">8</span><span>˚</span>
               </h2>
             </div>
@@ -102,66 +102,67 @@
       <div class="card mt-4">
         <div class="card-title">
           <div class="row p-4">
-            <h3 class="forecast">5 Day Forecast</h3>
+            <h3 class="forecast-header">5 Day Forecast</h3>
           </div>
-          <div class="row m-4">
+          <div class="row d-flex justify-content-between m-4 forecast">
             <div class="col border-end">
-              <p class="forecastDate">Tue 12 Oct</p>
-              <img src="images/lighting.png" class="forecastGraphic py-4" />
+              <p class="forecast-date">Tue 12 Oct</p>
+              <img src="images/lighting.png" class="py-4 forecast-graphic" />
               <p>
-                <span class="forecastHigh p-1">16˚</span>
+                <span class="p-1 forecast-high">16˚</span>
                 <span class="vr"></span>
-                <span class="forecastLow p-1">8˚</span>
+                <span class="p-1 forecast-low">8˚</span>
               </p>
             </div>
             <div class="col border-end">
-              <p class="forecastDate">Wed 13 Oct</p>
-              <img src="images/rainy.png" class="forecastGraphic py-4" />
+              <p class="forecast-date">Wed 13 Oct</p>
+              <img src="images/rainy.png" class="py-4 forecast-graphic" />
               <p>
-                <span class="forecastHigh p-1">14˚</span>
+                <span class="p-1 forecast-high">14˚</span>
                 <span class="vr"></span>
-                <span class="forecastLow p-1">5˚</span>
+                <span class="p-1 forecast-low">5˚</span>
               </p>
             </div>
             <div class="col border-end">
-              <p class="forecastDate">Thu 14 Oct</p>
-              <img src="images/cloudy-day.png" class="forecastGraphic py-4" />
+              <p class="forecast-date">Thu 14 Oct</p>
+              <img src="images/cloudy-day.png" class="py-4 forecast-graphic" />
               <p>
-                <span class="forecastHigh p-1">18˚</span>
+                <span class="p-1 forecast-high">18˚</span>
                 <span class="vr"></span>
-                <span class="forecastLow p-1">7˚</span>
+                <span class="p-1 forecast-low">7˚</span>
               </p>
             </div>
             <div class="col border-end">
-              <p class="forecastDate">Fri 15 Oct</p>
-              <img src="images/sunny.png" class="forecastGraphic py-4" />
+              <p class="forecast-date">Fri 15 Oct</p>
+              <img src="images/sunny.png" class="py-4 forecast-graphic" />
               <p>
-                <span class="forecastHigh p-1">18˚</span>
+                <span class="p-1 forecast-high">18˚</span>
                 <span class="vr"></span>
-                <span class="forecastLow p-1">6˚</span>
+                <span class="p-1 forecast-low">6˚</span>
               </p>
             </div>
             <div class="col">
-              <p class="forecastDate">Sat 16 Oct</p>
-              <img src="images/cloud.png" class="forecastGraphic py-4" />
+              <p class="forecast-date">Sat 16 Oct</p>
+              <img src="images/cloud.png" class="py-4 forecast-graphic" />
               <p>
-                <span class="forecastHigh p-1">12˚</span>
+                <span class="p-1 forecast-high">12˚</span>
                 <span class="vr"></span>
-                <span class="forecastLow p-1">4˚</span>
+                <span class="p-1 forecast-low">4˚</span>
               </p>
             </div>
           </div>
         </div>
       </div>
+      <div class="footer">
+        <small>
+          <a href="https://github.com/krazeecat/shecodes-project.git">
+            Open source project
+          </a>
+          by Anna MacMurdo
+        </small>
+      </div>
     </div>
-    <div class="footer">
-      <p>
-        <a href="https://github.com/krazeecat/shecodes-project.git">
-          Open source project
-        </a>
-        by Anna MacMurdo
-      </p>
-    </div>
+
     <script src="src/index.js"></script>
   </body>
 </html>
