@@ -137,6 +137,7 @@ function updateWeather(response) {
   currentWind.innerText = wind;
 
   updateDate();
+  updateForecast();
 
   updateCity(response);
 }
@@ -195,4 +196,32 @@ function firstTimeWeather() {
   axios.get(weatherURL).then(updateWeather);
 }
 
+//forecast
+function updateForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["Friday", "Saturday", "Sunday", "Monday", "Tuesday"];
+  let forecastHTML = "";
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+    
+      <div class="col">
+        <p class="forecast-date">${day}</p>
+        <img src="images/lighting.png" class="py-4 forecast-graphic" />
+        <p>
+          <span class="p-1 forecast-high">16˚</span>
+          <span class="vr"></span>
+          <span class="p-1 forecast-low">8˚</span>
+        </p>
+      </div>
+    </div>
+  `;
+  });
+  forecastHTML = forecastHTML + `</div >`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+//first time page load
 firstTimeWeather();

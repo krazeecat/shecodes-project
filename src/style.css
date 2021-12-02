@@ -88,6 +88,7 @@ a:hover {
 }
 .forecast {
   text-align: center;
+  padding-bottom: 32px;
 }
 .forecast-date {
   color: #7b7b7b;
