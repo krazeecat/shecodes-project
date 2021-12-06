@@ -1,3 +1,6 @@
+//global variables
+const apiKey = "8d0f3193f3635eec81a60bab4807ea1f";
+
 //update time and date on page
 function updateDate() {
   let date = new Date();
@@ -8,7 +11,7 @@ function updateDate() {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Satday",
+    "Saturday",
   ];
   let months = [
     "January",
@@ -32,6 +35,20 @@ function updateDate() {
   let displayDate = document.querySelector("#current-date");
 
   displayDate.innerHTML = `${dayNow} ${dateNow} ${monthNow} ${hourNow}:${minuteNow}`;
+}
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  return days[day];
 }
 
 //Change city name
@@ -112,9 +129,55 @@ changeF.addEventListener("click", changeToF);
 let changeC = document.querySelector("#change-c");
 changeC.addEventListener("click", changeToC);
 
+//update forecast
+function updateForecast(response) {
+  console.log(response.data.daily);
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = "";
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index > 0 && index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+    
+      <div class="col">
+        <p class="forecast-date">${formatDay(forecastDay.dt)}</p>
+        <img src="images/${
+          forecastDay.weather[0].icon
+        }.png" class="py-4 forecast-graphic" />
+        <p>
+          <span class="p-1 forecast-high">${Math.round(
+            forecastDay.temp.max
+          )}˚</span>
+          <span class="vr"></span>
+          <span class="p-1 forecast-low">${Math.round(
+            forecastDay.temp.min
+          )}˚</span>
+        </p>
+      </div>
+    </div>
+  `;
+    }
+  });
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  let unit = "standard";
+  if (checkTempUnit()) {
+    unit = "metric";
+  } else {
+    unit = "imperial";
+  }
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=hourly,current,minutely,alerts&appid=${apiKey}&units=${unit}`;
+  axios.get(apiUrl).then(updateForecast);
+}
+
 //Update weather info
 function updateWeather(response) {
-  console.log(response);
   let temperature = Math.round(response.data.main.temp);
   let high = Math.round(response.data.main.temp_max);
   let low = Math.round(response.data.main.temp_min);
@@ -137,16 +200,14 @@ function updateWeather(response) {
   currentWind.innerText = wind;
 
   updateDate();
-  updateForecast();
-
   updateCity(response);
+  getForecast(response.data.coord);
 }
 
 //search for weather from search box text
 function findCityWeather(event) {
   event.preventDefault();
   let newCity = document.querySelector("#city-search-text").value;
-  let apiKey = "8d0f3193f3635eec81a60bab4807ea1f";
   let unit = "standard";
   if (checkTempUnit()) {
     unit = "metric";
@@ -162,7 +223,6 @@ function findCityWeather(event) {
 function findLocationWeather(position) {
   let lat = position.coords.latitude;
   let long = position.coords.longitude;
-  let apiKey = "8d0f3193f3635eec81a60bab4807ea1f";
   let unit = "standard";
   if (checkTempUnit()) {
     unit = "metric";
@@ -184,7 +244,6 @@ locationButton.addEventListener("click", getLocation);
 //get current weather on page load
 function firstTimeWeather() {
   let startCity = "Copenhagen";
-  let apiKey = "8d0f3193f3635eec81a60bab4807ea1f";
   let unit = "standard";
   if (checkTempUnit()) {
     unit = "metric";
@@ -194,33 +253,6 @@ function firstTimeWeather() {
   let weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${startCity}&units=${unit}&appid=${apiKey}`;
 
   axios.get(weatherURL).then(updateWeather);
-}
-
-//forecast
-function updateForecast() {
-  let forecastElement = document.querySelector("#forecast");
-  let days = ["Friday", "Saturday", "Sunday", "Monday", "Tuesday"];
-  let forecastHTML = "";
-
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-    
-      <div class="col">
-        <p class="forecast-date">${day}</p>
-        <img src="images/lighting.png" class="py-4 forecast-graphic" />
-        <p>
-          <span class="p-1 forecast-high">16˚</span>
-          <span class="vr"></span>
-          <span class="p-1 forecast-low">8˚</span>
-        </p>
-      </div>
-    </div>
-  `;
-  });
-  forecastHTML = forecastHTML + `</div >`;
-  forecastElement.innerHTML = forecastHTML;
 }
 
 //first time page load

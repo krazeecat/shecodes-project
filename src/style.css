@@ -75,10 +75,12 @@ a:hover {
 }
 .current-high {
   color: #4a4a4a;
+  font-size: 40px;
   text-align: center;
 }
 .current-low {
   color: #7b7b7b;
+  font-size: 40px;
   text-align: center;
 }
 .forecast-header {
