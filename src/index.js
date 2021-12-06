@@ -1,5 +1,6 @@
 //global variables
 const apiKey = "8d0f3193f3635eec81a60bab4807ea1f";
+let lastForecastResponse = "";
 
 //update time and date on page
 function updateDate() {
@@ -64,7 +65,13 @@ function updateCity(response) {
 let citySearch = document.querySelector("#search-form");
 citySearch.addEventListener("submit", findCityWeather);
 
-//Change temperature units
+//Change  units
+function convertToMiles(meters) {
+  return meters * 2.237;
+}
+function convertToMeters(miles) {
+  return miles / 2.237;
+}
 function convertToF(celsius) {
   return (celsius * 9) / 5 + 32;
 }
@@ -98,14 +105,22 @@ function changeToF() {
   let currentTempC = document.querySelector("#current-temp");
   let currentHighC = document.querySelector("#current-high");
   let currentLowC = document.querySelector("#current-low");
+  let currentWindMe = document.querySelector("#current-wind");
+  let currentWindUnitMe = document.querySelector("#current-wind-unit");
+  let windSpeedMe = convertToMiles(currentWindMe.innerHTML);
+  console.log(windSpeedMe);
+
   let currentTempFahrenheit = convertToF(currentTempC.innerText);
   let currentHighFahrenheit = convertToF(currentHighC.innerText);
   let currentLowFahrenheit = convertToF(currentLowC.innerText);
   currentTempC.innerHTML = Math.round(currentTempFahrenheit);
   currentHighC.innerHTML = Math.round(currentHighFahrenheit);
   currentLowC.innerHTML = Math.round(currentLowFahrenheit);
+  currentWindMe.innerHTML = Math.round(windSpeedMe);
+  currentWindUnitMe.innerHTML = " m/h";
 
   switchTempSelected();
+  getForecast(lastForecastResponse);
 }
 
 //change display temperatures from farhenheit to celcius
@@ -113,14 +128,22 @@ function changeToC() {
   let currentTempF = document.querySelector("#current-temp");
   let currentHighF = document.querySelector("#current-high");
   let currentLowF = document.querySelector("#current-low");
+  let currentWindMi = document.querySelector("#current-wind");
+  let currentWindUnitMi = document.querySelector("#current-wind-unit");
+
+  let windSpeedMi = convertToMeters(currentWindMi.innerHTML);
+  console.log(windSpeedMi);
   let currentTempCelcius = convertToC(currentTempF.innerText);
   let currentHighCelcius = convertToC(currentHighF.innerText);
   let currentLowCelcius = convertToC(currentLowF.innerText);
   currentTempF.innerHTML = Math.round(currentTempCelcius);
   currentHighF.innerHTML = Math.round(currentHighCelcius);
   currentLowF.innerHTML = Math.round(currentLowCelcius);
+  currentWindMi.innerHTML = Math.round(windSpeedMi);
+  currentWindUnitMi.innerHTML = " m/s";
 
   switchTempSelected();
+  getForecast(lastForecastResponse);
 }
 
 let changeF = document.querySelector("#change-f");
@@ -131,7 +154,6 @@ changeC.addEventListener("click", changeToC);
 
 //update forecast
 function updateForecast(response) {
-  console.log(response.data.daily);
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = "";
@@ -178,6 +200,8 @@ function getForecast(coordinates) {
 
 //Update weather info
 function updateWeather(response) {
+  lastForecastResponse = response.data.coord;
+  console.log(lastForecastResponse);
   let temperature = Math.round(response.data.main.temp);
   let high = Math.round(response.data.main.temp_max);
   let low = Math.round(response.data.main.temp_min);
@@ -201,7 +225,7 @@ function updateWeather(response) {
 
   updateDate();
   updateCity(response);
-  getForecast(response.data.coord);
+  getForecast(lastForecastResponse);
 }
 
 //search for weather from search box text
