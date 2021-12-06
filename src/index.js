@@ -108,8 +108,6 @@ function changeToF() {
   let currentWindMe = document.querySelector("#current-wind");
   let currentWindUnitMe = document.querySelector("#current-wind-unit");
   let windSpeedMe = convertToMiles(currentWindMe.innerHTML);
-  console.log(windSpeedMe);
-
   let currentTempFahrenheit = convertToF(currentTempC.innerText);
   let currentHighFahrenheit = convertToF(currentHighC.innerText);
   let currentLowFahrenheit = convertToF(currentLowC.innerText);
@@ -132,7 +130,6 @@ function changeToC() {
   let currentWindUnitMi = document.querySelector("#current-wind-unit");
 
   let windSpeedMi = convertToMeters(currentWindMi.innerHTML);
-  console.log(windSpeedMi);
   let currentTempCelcius = convertToC(currentTempF.innerText);
   let currentHighCelcius = convertToC(currentHighF.innerText);
   let currentLowCelcius = convertToC(currentLowF.innerText);
@@ -201,7 +198,6 @@ function getForecast(coordinates) {
 //Update weather info
 function updateWeather(response) {
   lastForecastResponse = response.data.coord;
-  console.log(lastForecastResponse);
   let temperature = Math.round(response.data.main.temp);
   let high = Math.round(response.data.main.temp_max);
   let low = Math.round(response.data.main.temp_min);
